@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/navbar.html :: header( title = 'Técnicos')}"></head>
+<body>
+<main>
+  <div class="container px-4 pb-5">
+    <nav th:replace="~{fragments/navbar.html :: navbar( active = 'Tecnico')}"></nav>
+    <h1 class="pb-2 border-bottom">Estadísticas - sitios</h1>
+    <br>
+    <h4>Cantidad de intervenciones por sitio existente</h4>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Sitio</th>
+        <th>Cantidad de internciones</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="intervention : ${listaIntervenciones}">
+        <td th:text="${intervention.getSiteName()}">
+        <td th:text="${intervention.getCantidad_Intervenciones()}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+<script th:replace="~{fragments/navbar.html :: footer-bootstrap}"></script>
+</body>
+</html>

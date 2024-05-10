@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{fragments/navbar.html :: header( title = 'Tecnicos')}"></head>
+    <body>
+        <div class="container">
+            <nav th:replace="~{fragments/navbar.html :: navbar( active = 'Tecnico')}"></nav>
+            <div class="row mb-4">
+                <div class="col-md-6 offset-md-3">
+                    <h2 th:text="${tecnico.id == null || tecnico.id == 0 ? 'Nuevo Técnico' : 'Editar Técnico'}"></h2>                    <hr/>
+                    <form method="post" th:action="@{/save}" th:object="${tecnico}">
+                        <div class="mb-3">
+                            <label for="firstname" class="form-label">Nombre del Tecnico</label>
+                            <input type="text" class="form-control" id="firstname" th:field="*{firstName}"
+                                    th:classappend="${#fields.hasErrors('firstName')?'is-invalid':''}">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('firstName')}"
+                                 th:errors="*{firstName}" ></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="lastname" class="form-label">Apellido del Tecnico</label>
+                            <input type="text" class="form-control" id="lastname" th:field="*{lastName}"
+                                   th:classappend="${#fields.hasErrors('lastName')?'is-invalid':''}">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('lastName')}"
+                                 th:errors="*{lastName}" ></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="dni" class="form-label">Dni</label>
+                            <input type="number" class="form-control" id="dni" th:field="*{dni}"
+                                   th:classappend="${#fields.hasErrors('dni')?'is-invalid':''}">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('dni')}"
+                                 th:errors="*{dni}" ></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Número celular</label>
+                            <input type="number" class="form-control" id="phone" th:field="*{phone}"
+                                   th:classappend="${#fields.hasErrors('phone')?'is-invalid':''}">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('phone')}"
+                                 th:errors="*{phone}" ></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="age" class="form-label">Edad</label>
+                            <input type="number" class="form-control" id="age" th:field="*{age}"
+                                   th:classappend="${#fields.hasErrors('age')?'is-invalid':''}">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('age')}"
+                                 th:errors="*{age}" ></div>
+                        </div>
+                        <a th:href="@{'/Tecnicos'}" class="btn btn-danger">Cancelar</a>
+                        <button type="submit" class="btn btn-primary" th:text="${tecnico.id == null || tecnico.id == 0 ? 'Registrar' : 'Actualizar'}">Registrar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script th:replace="~{fragments/navbar.html :: footer-bootstrap}"></script>
+    </body>
+</html>
