@@ -49,16 +49,13 @@ public class TechnicianController {
         } else {
             if (technician.getId() == null) {
                 Technician Encontradotechnician = technicianRepository.buscarXdni(technician.getDni());
-                if (Encontradotechnician != null) {
-                    System.out.println("El técnico ya existe");
-                    return "technician/newFrm";
-                } else {
+                technicianRepository.save(technician);
                     attr.addFlashAttribute("msg", "Técnico creado exitosamente");
-                    technicianRepository.save(technician);
+
                     return "redirect:/Tecnicos";
                 }
-            } else {
-                attr.addFlashAttribute("msg", "Técnico actualizado exitosamente");
+            else {
+                attr.addFlashAttribute("msg", "Técnico"+technician.getFirstName() +technician.getLastName()+" actualizado exitosamente");
                 technicianRepository.save(technician);
                 return "redirect:/Tecnicos";
             }
